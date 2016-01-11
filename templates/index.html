@@ -1,0 +1,152 @@
+{% extends "layout/_index.html" %}
+
+{% block header %}
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>茂森厨卫电器</h1>
+                        <h3>powered by Maosen</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="#" class="btn btn-default btn-lg"><img src="/static/maosen/img/icons/icon_24_workspace.png"><span class="network-name">WORKSPACE</span></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-default btn-lg"><img src="/static/maosen/img/icons/icon_24_research.png"><span class="network-name">RESEARCH</span></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-default btn-lg"><img src="/static/maosen/img/icons/icon_24_open.png"><span class="network-name">OPEN PROJECTS</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+{% endblock %}
+
+{% block content %}
+    <a  name="services"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Maosen</h2>
+                    <p class="lead">
+			Customizable experimental environment:
+			users can design, construct, and deploy a virtualized computing system including virtual machines and their interconnections, applications and tools running in the virtualized system, and many more.
+			Collaborative, interactive, and social networking 
+			</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="/static/maosen/img/workspace.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Research</h2>
+                    <p class="lead">A cloud-based research platform enables researchers to develop research prototypes involving both cloud computing and mobiles for proof-of-the-concept. Moreover, it serves as a prototype demonstration platform that allows industrial practitioners to exchange ideas and interact with researchers. </p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="/static/maosen/img/mobicloud-research.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Projects</h2>
+                    <p class="lead">An open source platform to publish research outcomes and keep track of latest research activities. </p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="/static/maosen/img/workspace.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+	<a  name="contact"></a>
+    <div class="banner">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Connect to Maosen</h2>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="#" class="btn btn-default btn-lg"><img src="/static/maosen/img/icons/icon_24_workspace.png"><span class="network-name">WORKSPACE</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn btn-default btn-lg"><img src="/static/maosen/img/icons/icon_24_research.png"><span class="network-name">RESEARCH</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn btn-default btn-lg"><img src="/static/maosen/img/icons/icon_24_open.png"><span class="network-name">OPEN PROJECTS</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.banner -->
+{% endblock %}
+
+{% block js %}
+
+<script src="/static/maosen/js/jquery.bootstrap-autohidingnavbar.min.js"></script>
+<script src="/static/maosen/js/jquery.bgswitcher.js"></script>
+<script>
+	$(".navbar-fixed-top").autoHidingNavbar();
+	$(".intro-header").bgswitcher({
+	    images: ["/static/maosen/img/laptop_cloud_1.jpg", "/static/maosen/img/laptop_cloud_2.jpg"],
+	    effect: "fade",
+	    interval: 15000
+	});
+
+</script>
+
+{% endblock %}

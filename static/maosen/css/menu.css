@@ -1,0 +1,54 @@
+ol.breadcrumb {
+    margin: 0;
+    background: 0 0
+}
+
+ol.breadcrumb>li {
+    font-size: 12px;
+    color: #999
+}
+
+ol.breadcrumb>li+li:before {
+    content: ">\00a0"
+}
+
+ol.breadcrumb>li.home:before,ol.breadcrumb>li.pull-right:before {
+    padding: 0;
+    content: ''
+}
+
+ol.breadcrumb>li.pull-right>a {
+    color: #ff8000
+}
+
+ol.breadcrumb>li>a {
+    color: #999
+}
+
+section.sub-nav-element {
+    height: 38px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff
+}
+
+section.app-list-kinds {
+    margin-bottom: 15px
+}
+
+section.app-list-kinds .nav>li.divider {
+    margin: 9px 0;
+    height: 1px;
+    background-color: #ddd
+}
+
+section.app-list-kinds .nav>li.active>a {
+    color: #fff;
+    background-color: #f93
+}
+
+section.app-list-kinds .nav>li>a {
+    padding: 0 15px;
+    line-height: 30px;
+    color: #333
+}
+

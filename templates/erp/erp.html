@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="RanLi@HUST">
+
+	<title>茂森公司ERP系统</title>
+
+	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	
+	<!-- Custom Fonts -->
+	<link href="/static/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="/static/erp/css/modern-business.css">
+	<link rel="stylesheet" href="/static/erp/css/navbar.css">
+
+	<!-- jquery desktop CSS -->
+	<link rel="stylesheet" href="/static/erp/css/reset.css">
+	<link rel="stylesheet" href="/static/erp/css/desktop.css">
+	
+	<!-- vis -->
+	<link rel="stylesheet" href="/static/erp/css/vis.min.css">
+	
+	<!-- jquery-ui CSS -->
+	<link rel="stylesheet" href="/static/css/jquery-ui.min.css">
+	
+	<link href="/static/erp/css/dataTables.jqueryui.min.css" rel="stylesheet">
+	<link href="/static/erp/css/jquery.dataTables.css" rel="stylesheet">
+	<!-- jquery waitMe CSS -->
+	<link rel="stylesheet" href="/static/erp/css/waitMe.min.css">	
+	
+	<!--[if lt IE 9]>
+	<link rel="stylesheet" href="/static/erp/css/ie.css">	
+	<![endif]-->		
+</head>
+
+<body>
+<div class="abs" id="wrapper">
+  <div class="abs" id="desktop">
+    <a class="abs icon" style="left:20px;top:20px;" href="#icon_dock_rkmanage">
+      <img src="/static/erp/img/icons/icon_32_computer.png" />
+      入库管理
+    </a>
+    <a class="abs icon" style="left:20px;top:100px;" href="#icon_dock_salemanage">
+      <img src="/static/erp/img/icons/icon_users.png" />
+      销售管理
+    </a>    
+    <a class="abs icon" style="left:20px;top:180px;" href="#icon_dock_stockmanage">
+      <img src="/static/erp/img/icons/icon_smartshirt.png" />
+      库存管理
+    </a>
+	<a class="abs icon" style="left:20px;top:260px;" href="#icon_dock_clientmanage">
+      <img src="/static/erp/img/icons/icon_smartshirt.png" />
+      客户管理
+    </a>
+    <a class="abs icon" style="left:20px;top:340px;" href="#icon_dock_statistics">
+      <img src="/static/erp/img/icons/icon_smartshirt.png" />
+      统计报表
+    </a>
+	<a class="abs icon" style="left:20px;top:420px;" href="#icon_dock_storagemanage">
+      <img src="/static/erp/img/icons/icon_smartshirt.png" />
+      仓库管理
+    </a>
+	<a class="abs icon" style="left:20px;top:500px;" href="#icon_dock_financemanage">
+      <img src="/static/erp/img/icons/icon_smartshirt.png" />
+      财务管理
+    </a>
+	<a class="abs icon" style="left:20px;top:580px;" href="#icon_dock_moneymanage">
+      <img src="/static/erp/img/icons/icon_smartshirt.png" />
+      应收应付
+    </a>
+	<a class="abs icon" style="left:180px;top:20px;" href="#icon_dock_productmanage">
+      <img src="/static/erp/img/icons/icon_smartshirt.png" />
+      产品管理
+    </a>
+	<a class="abs icon" style="left:100px;top:20px;" href="#icon_dock_settingup">
+      <img src="/static/erp/img/icons/icon_smartshirt.png" />
+      系统设置
+    </a>
+  </div>
+  <div class="abs" id="bar_top">
+    <span class="float_right" id="clock"></span>
+    <ul>
+      <li>
+        <a class="menu" href="/"><i class="glyphicon glyphicon-home"></i></a>        
+      </li>
+      <li>     
+        <a class="menu_trigger" id="login_user" href="#">Admin</a>
+       <!-- 
+        <ul class="menu">
+          <li>
+            <a href="#">Log Out</a> 
+          </li>          
+        </ul> 
+       --> 
+      </li>
+    </ul>
+  </div>
+  
+  <div class="abs" id="bar_bottom">
+    <a class="float_left" href="#" id="show_desktop" title="Show Desktop">
+      <img src="/static/erp/img/icons/icon_22_desktop.png" />
+    </a>
+    <ul id="dock"></ul>   
+  </div>
+  <div>
+	<form class="hidden">
+		{% csrf_token %}
+	</form>
+  </div>
+</div>
+<style type="text/css">
+#draw_labTemplate_new{
+	 position:relative;
+      width: 100%;
+      height: 550px;
+      border: 1px solid lightgray;
+}
+
+</style>
+
+<script src="/static/js/jquery1.11.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery-ui.min.js"></script>
+<script src="/static/erp/js/jquery.dataTables.min.js"></script>
+<script src="/static/erp/js/dataTables.jqueryui.min.js"></script>
+
+<script src="/static/erp/js/vis.min.js"></script>
+<script src="/static/js/waitMe.min.js"></script>
+
+<script src="/static/js/jquery.cookie.js"></script>
+<script src="/static/js/jquery.django.js"></script>
+
+<!-- 用于创建各个窗口及构建窗口显示内容 -->
+<script src="/static/erp/js/erp_window.js"></script>
+<!--  -->
+<script src="/static/erp/js/jquery.desktop.js"></script>
+
+</body>
+
+</html>

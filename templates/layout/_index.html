@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>茂森厨卫电器有限公司</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link href="/static/maosen/css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="http://cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://fonts.useso.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	
+	<link rel="stylesheet" href="/static/maosen/css/dashboard.css"/>
+    <link rel="stylesheet" href="/static/maosen/css/menu.css"/>
+	<link rel="stylesheet" href="/static/css/waitMe.min.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+	<section class="top-bar-element">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="top-bar-logo">
+						<img src="http://static.sfcdn.org/images/logo.jpg?logo" alt="茂森厨卫电器" title="茂森厨卫电器">
+					</div>
+					<div class="top-bar-link">
+						<span><i class="fa fa-volume-up"></i></span>
+						欢迎光临茂森厨卫电器有限公司的主页
+					</div>
+					<div class="top-bar-login">
+						<a href="#" data-target="#loginModal" data-toggle="modal" data-shafa-login="button" data-url="#" data-style="css/account/qrcode.css">登录</a>
+						<span>|</span>
+						<a href="#">注册</a>
+					</div>
+					<div class="top-bar-search">
+						<form method="GET" action="" accept-charset="UTF-8" class="form-inline">
+							<div class="form-group">
+								<input class="form-control" placeholder="搜索" name="kw" type="text">
+							</div>
+							<button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse nav-bar-element">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarCollapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="nav navbar-nav">
+					<li class=active><a href="/">首页</a></li>
+					<li>
+						<ul class="dropdown-menu">
+                            <li><a href="#">采购入库</a></li>
+                            <li><a href="#">采购记录查询</a></li>
+                            <li><a href="#">采购退货</a></li>
+                            <li><a href="#">采购退货查询</a></li>
+						</ul>
+						<a href="#">入库管理</a>
+					</li>
+					<li>
+						<ul class="dropdown-menu">
+								<li><a href="#">产品销售平台</a></li>
+								<li><a href="#">销售记录查询</a></li>
+								<li><a href="#">客户退货管理</a></li>
+								<li><a href="#">客户退货记录</a></li>
+						</ul>
+						<a href="#">销售管理</a>
+					</li>
+					<li>
+						<ul class="dropdown-menu">
+								<li><a href="#">库存情况查询</a></li>
+								<li><a href="#">仓库调拨</a></li>
+								<li><a href="#">调拨记录查询</a></li>
+								<li><a href="#">库存缺货查询</a></li>
+								<li><a href="#">报损产品</a></li>
+						</ul>
+						<a href="#">库存管理</a>
+					</li>
+					<li>
+						<ul class="dropdown-menu">
+								<li><a href="#">添加新客户</a></li>
+								<li><a href="#">客户列表</a></li>
+								<li><a href="#">客户分组</a></li>
+								<li><a href="#">客户预付款</a></li>
+						</ul>
+						<a href="#">客户管理</a>
+					</li>
+					<li>
+						<ul class="dropdown-menu">
+								<li><a href="#">采购报表</a></li>
+								<li><a href="#">销售报表</a></li>
+								<li><a href="#">采购退货报表</a></li>
+								<li><a href="#">客户退货报表</a></li>
+								<li><a href="#">报损报表</a></li>
+								<li><a href="#">客户销售报表</a></li>
+								<li><a href="#">业务员销售报表</a></li>
+								<li><a href="#">供货商报表</a></li>
+								<li><a href="#">全局统计报表</a></li>
+						</ul>
+						<a href="#">统计报表</a>
+					</li>				
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+<!-- Header -->
+{% block header %}{% endblock %}
+
+<!-- Page Content -->
+{% block content %}{% endblock %}
+
+<!-- Footer -->
+    <footer>
+	    <div class="container">
+	        <div class="row">
+    		    <div class="col-lg-12">
+					<ul class="list-inline">
+						<li>
+							<a href="/index">首页</a>
+					    </li>
+					    <li class="footer-menu-divider">&sdot;</li>
+					    <li>
+					        <a href="#about">关于我们</a>
+					    </li>
+			            <li class="footer-menu-divider">&sdot;</li>
+			            <li>
+			                <a href="#services">我们的服务</a>
+			            </li>
+			            <li class="footer-menu-divider">&sdot;</li>
+			            <li>
+			                <a href="#contact">联系我们</a>
+			            </li>
+			        </ul>
+			    <p class="copyright text-muted small">Copyright &copy; 茂森厨卫电器有限公司 Maosen 2015. All Rights Reserved</p>
+			    </div>
+			</div>
+		</div>
+	</footer>
+ 
+	<section class="modal fade login-element" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<form method="POST" action="" accept-charset="UTF-8" style="float:none" class="center-block">
+						{% csrf_token %}
+						<div class="form-group">
+							<label for="username" class="sr-only"></label>
+							<div class="input-group">
+								<div class="input-group-addon username">
+									<span></span>
+								</div>
+								<input class="form-control" id="username" placeholder="帐号" name="username" type="text">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="sr-only"></label>
+							<div class="input-group">
+								<div class="input-group-addon password">
+									<span></span>
+								</div>
+								<input class="form-control" id="password" placeholder="密码" name="password" type="password" value="">
+							</div>
+						</div>
+						<button class="btn btn-primary btn-block" type="submit">登录</button>
+						<p>
+							<a href="#" target="_blank">忘记密码</a>
+							<span>|</span>
+							<a href="#" target="_blank">去注册</a>
+						</p>
+					</form>                
+				</div>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</div>
+	</section> <!-- Optional, bootstrap javascript library -->
+ 
+ 	<!-- jQuery -->
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	
+	<!-- Jquery UI -->
+	<script src="http://cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+	<!-- waitMe -->
+	<script src="/static/js/waitMe.min.js"></script>
+	
+	<!-- jauqry.cookie -->
+	<script src="/static/js/jquery.cookie.js"></script>
+
+	<!-- jauqry django -->
+	<script src="/static/js/jquery.django.js"></script>
+    
+	<!-- js -->
+	{% block js  %}{% endblock %}
+
+</body>
+
+</html>
