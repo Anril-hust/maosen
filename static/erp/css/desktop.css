@@ -125,7 +125,7 @@ div.ui-resizable-handle {
   -webkit-background-clip: padding-box;
   color: #000;
   display: none;
-  width: 800px;
+  width: 900px;
   height: 500px;
   top: 30px;
   left: 120px;
@@ -574,17 +574,31 @@ th.shrink {
 
 /* === Form Elements === */
 .contact_form label {
-  width:150px;
+  width:120px;
   /*margin-top: 3px;*/
   display:inline-block;
   float:left;
   /*padding:3px;*/
 }
-.contact_form input {
+
+.contact_form select {
   height:28px;
-  width:220px;
+  width:300px;
   padding:5px 8px;
 }
+
+.contact_form input {
+  height:28px;
+  width:300px;
+  padding:5px 8px;
+}
+
+.contact_form .checkbox-inline input{
+	height: 16px;
+	width: 16px;
+	padding: 5px 15px 10px;
+}
+
 .contact_form textarea {padding:8px; width:300px;}
 .contact_form button {margin-left:156px;}
 

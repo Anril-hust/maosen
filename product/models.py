@@ -20,11 +20,13 @@ class Information(models.Model):
 class Category(models.Model):
     '''商品分类管理'''
     category_name = models.CharField(max_length=50)
+    unit = models.CharField(max_length=10)
     desc = models.CharField(max_length=100)
     reid = models.SmallIntegerField()
 
-
+"""
 class Unit(models.Model):
     '''商品单位'''
     unit_name = models.CharField(max_length=20)
     reid = models.SmallIntegerField()
+"""

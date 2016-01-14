@@ -160,6 +160,11 @@ var JQD = (function($, window, document, undefined) {
         		picture = 'icon_16_computer.png';
         		bottom = '';
         		break;
+			case 'infomanage':
+        		windowName = '信息管理管理';
+        		picture = 'icon_16_computer.png';
+        		bottom = '';
+        		break;
 			case 'settingup':
         		windowName = '系统设置';
         		picture = 'icon_16_computer.png';
@@ -377,8 +382,8 @@ var JQD = (function($, window, document, undefined) {
             handle: 'div.window_top'
           }).resizable({
             containment: 'parent',
-            minWidth: 800,
-            minHeight: 400,
+            minWidth: 900,
+            minHeight: 500,
             resize: function(event, ui){
 				/** vis画图时改变窗口尺寸会导致画图被拉伸，需要重新绘制，
 				  * 此函数用于此
@@ -464,15 +469,38 @@ var JQD = (function($, window, document, undefined) {
 			if($(this).attr('href') == '#product_baseinfo'){
 				$('#product_baseinfo').closest('div.window').find('div.window_bottom')
 						.html('产品基本信息');
-			}else if($(this).attr('href') == '#product_topCategory'){
+			}
+			//产品分类
+			else if($(this).attr('href') == '#product_topCategory'){				
+				display_top_category('product_topCategory');//切换tab时才显示该tab的内容
 				$('#product_topCategory').closest('div.window').find('div.window_bottom')
 						.html('提示：您可以双击顶级分类为其添加子分类，也可以点击“更多->添加子分类”。');
-			}else if($(this).attr('href') == '#product_subCategory'){
+			}else if($(this).attr('href').substring(0, '#product_subCategory'.length) == '#product_subCategory'){
 				$('#product_subCategory').closest('div.window').find('div.window_bottom')
 						.html('提示：您可以点击“更多”来修改或删除子分类。');
 			}else if($(this).attr('href') == '#product_unit'){
 				$('#product_unit').closest('div.window').find('div.window_bottom')
-						.html('产品计量单位。');
+						.html('提示：您可以在此添加产品计量单位，也可点击“更多”来修改或删除计量单位。');
+			}
+			//开始信息管理窗口的tab的切换显示
+			else if($(this).attr('href') == '#info_provider'){
+				display_provider('info_provider');
+				$('#info_provider').closest('div.window').find('div.window_bottom')
+						.html('提示：您可以在此添加或删除供应商。');
+			}else if($(this).attr('href') == '#info_staff'){
+				display_staff('info_staff');
+				$('#info_staff').closest('div.window').find('div.window_bottom')
+						.html('提示：您可以在此添加或删除员工。');
+			}else if($(this).attr('href') == '#info_storage'){
+				
+			}else if($(this).attr('href') == '#info_department'){
+				display_department('info_department');
+				$('#info_department').closest('div.window').find('div.window_bottom')
+						.html('提示：您可以在此添加或删除部门。');
+			}else if($(this).attr('href') == '#info_duty'){
+				display_duty('info_duty');
+				$('#info_duty').closest('div.window').find('div.window_bottom')
+						.html('提示：您可以在此添加或删除职务。');
 			}
 		});
         
@@ -482,7 +510,7 @@ var JQD = (function($, window, document, undefined) {
         // 顶级分类窗口里的操作部分
 		d.on('click', 'a.actionMenu', function(){    	
         	
-			if($(this).hasClass('topCategory-menu')){
+			if($(this).hasClass('topCategory-menu')){	//处理产品顶级分类窗口的action-menu
 				$(this).after($('#topCategory-menu'));
 				//update links
 				//对于添加子分类的情况，需要新打开一个窗口，因此不需调用product_category_action函数
@@ -492,13 +520,48 @@ var JQD = (function($, window, document, undefined) {
 					.attr("onclick", "product_category_action($(this), 'update', 'top_category'); return false;");
 				$('#topCategory-menu').find(".topCategory-delete").attr("href", "#")
 					.attr("onclick", "product_category_action($(this), 'delete', 'top_category'); return false;");
-        	}else if($(this).hasClass('subCategory-menu')){
+        	}
+			else if($(this).hasClass('subCategory-menu')){	//处理产品子分类页面的action-menu
 				$(this).after($('#subCategory-menu'));
 				//update links
 				$('#subCategory-menu').find(".subCategory-edit").attr("href", "#")
 					.attr("onclick", "product_category_action($(this), 'update', 'sub_category'); return false;");
 				$('#subCategory-menu').find(".subCategory-delete").attr("href", "#")
 					.attr("onclick", "product_category_action($(this), 'delete', 'sub_category'); return false;");
+			}
+			/*
+			else if($(this).hasClass('unit-menu')){		//处理产品计量单位页面的action-menu
+				$(this).after($('#unit-menu'));
+				$('#unit-menu').find('.unit-edit').attr('href', '#')
+					.attr("onclick", "product_unit_action($(this), 'update', ''); return false;");
+				$('#unit-menu').find('.unit-delete').attr('href', '#')
+					.attr("onclick", "product_unit_action($(this), 'delete', ''); return false");
+			}
+			*/
+			else if($(this).hasClass('provider-menu')){
+				$(this).after($('#provider-menu'));
+				$('#provider-menu').find('.provider-edit')
+						.attr("onclick", "provider_action($(this), 'update'); return false;");
+				$('#provider-menu').find('.provider-delete')
+						.attr("onclick", "provider_action($(this), 'delete'); return false;");
+			}else if($(this).hasClass('staff-menu')){
+				$(this).after($('#staff-menu'));
+				$('#staff-menu').find('.staff-edit')
+						.attr("onclick", "staff_action($(this), 'update'); return false;");
+				$('#staff-menu').find('.staff-delete')
+						.attr("onclick", "staff_action($(this), 'delete'); return false;");
+			}else if($(this).hasClass('department-menu')){
+				$(this).after($('#department-menu'));
+				$('#department-menu').find('.department-edit')
+						.attr("onclick", "department_action($(this), 'update'); return false;");
+				$('#department-menu').find('.department-delete')
+						.attr("onclick", "department_action($(this), 'delete'); return false;");
+			}else if($(this).hasClass('duty-menu')){
+				$(this).after($('#duty-menu'));
+				$('#duty-menu').find('.duty-edit')
+						.attr("onclick", "duty_action($(this), 'update'); return false;");
+				$('#duty-menu').find('.duty-delete')
+						.attr("onclick", "duty_action($(this), 'delete'); return false;");
 			}
     		//show dropdown
     		if(!$(this).parent().hasClass("open")){

@@ -4,7 +4,6 @@ from django.http import HttpResponse
 
 from .models import Information
 from .models import Category
-from .models import Unit
 
 import json
 
@@ -18,6 +17,7 @@ def display_top_category(request):
 		typelist[t.id] = dict()
 		typelist[t.id]['id'] = t.id
 		typelist[t.id]['category'] = t.category_name
+		typelist[t.id]['unit'] = t.unit
 		typelist[t.id]['desc'] = t.desc
 
 	return HttpResponse(json.dumps(typelist))
@@ -34,6 +34,7 @@ def display_sub_category(request):
 		typelist[st.id] = dict()
 		typelist[st.id]['id'] = st.id
 		typelist[st.id]['category'] = st.category_name
+		typelist[st.id]['unit'] = st.unit
 		typelist[st.id]['desc'] = st.desc
 
 	return HttpResponse(json.dumps(typelist))
@@ -42,15 +43,17 @@ def add_category(request):
 	'''响应产品分类管理页面的添加顶级和子分类的请求'''	
 	c_reid = request.POST.get('category_reid')
 	c_name = request.POST.get('category_name')
+	c_unit = request.POST.get('category_unit')
 	c_desc = request.POST.get('category_desc')
 	
 	info = 'Insert successfully'
 	result = {}
 	try:
-		categories = Category(category_name = c_name, desc = c_desc, reid = c_reid)
+		categories = Category(category_name = c_name, unit = c_unit, desc = c_desc, reid = c_reid)
 		categories.save()
 		result['message'] = info
 		result['name'] = c_name
+		result['unit'] = c_unit
 		result['desc'] = c_desc
 		result['reid'] = c_reid
 	except:
@@ -62,6 +65,7 @@ def update_category(request):
 	'''响应产品分类管理页面的修改顶级分类和子分类的请求'''
 	c_id = int(request.POST.get('category_id'))
 	c_name = request.POST.get('category_name')
+	c_unit = request.POST.get('category_unit')
 	c_desc = request.POST.get('category_desc')
 	
 	info = 'Insert successfully'
@@ -69,6 +73,7 @@ def update_category(request):
 	try:
 		categories = Category.objects.get(id = c_id)
 		categories.category = c_name;
+		categories.unit = c_unit
 		categories.desc = c_desc
 		categories.save()
 		result['message'] = info

@@ -23,6 +23,7 @@ urlpatterns = [
 
     url(r'erp/', include('erp.urls')),
     url(r'^product/', include('product.urls')),
+    url(r'^infomanage/', include('infomanage.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 

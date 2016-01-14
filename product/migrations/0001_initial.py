@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('category_name', models.CharField(max_length=50)),
+                ('unit', models.CharField(max_length=10)),
                 ('desc', models.CharField(max_length=100)),
                 ('reid', models.SmallIntegerField()),
             ],
@@ -35,14 +36,6 @@ class Migration(migrations.Migration):
                 ('product_factorydate', models.DateField()),
                 ('product_keyword', models.CharField(max_length=20)),
                 ('product_remark', models.TextField()),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Unit',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('unit_name', models.CharField(max_length=20)),
-                ('reid', models.SmallIntegerField()),
             ],
         ),
     ]
