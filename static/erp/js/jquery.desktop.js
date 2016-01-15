@@ -492,7 +492,9 @@ var JQD = (function($, window, document, undefined) {
 				$('#info_staff').closest('div.window').find('div.window_bottom')
 						.html('提示：您可以在此添加或删除员工。');
 			}else if($(this).attr('href') == '#info_storage'){
-				
+				display_storage('info_storage');
+				$('#info_storage').closest('div.window').find('div.window_bottom')
+						.html('提示：您可以在此添加或删除仓库。');
 			}else if($(this).attr('href') == '#info_department'){
 				display_department('info_department');
 				$('#info_department').closest('div.window').find('div.window_bottom')
@@ -550,6 +552,12 @@ var JQD = (function($, window, document, undefined) {
 						.attr("onclick", "staff_action($(this), 'update'); return false;");
 				$('#staff-menu').find('.staff-delete')
 						.attr("onclick", "staff_action($(this), 'delete'); return false;");
+			}else if($(this).hasClass('storage-menu')){
+				$(this).after($('#storage-menu'));
+				$('#storage-menu').find('.storage-edit')
+						.attr("onclick", "storage_action($(this), 'update'); return false;");
+				$('#storage-menu').find('.storage-delete')
+						.attr("onclick", "storage_action($(this), 'delete'); return false;");
 			}else if($(this).hasClass('department-menu')){
 				$(this).after($('#department-menu'));
 				$('#department-menu').find('.department-edit')

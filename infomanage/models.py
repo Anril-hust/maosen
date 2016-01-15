@@ -38,6 +38,6 @@ class Storage(models.Model):
     '''仓库管理'''
     name = models.CharField(max_length=50)
     city = models.CharField(max_length=30)
-    admin = models.ForeignKey(Staff)        # 仓库管理员，作为外键引用员工的id
+    adminer = models.CharField(max_length=30)        # 仓库负责人
     default = models.SmallIntegerField()    # 标记是否为默认仓库
 

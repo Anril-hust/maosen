@@ -102,6 +102,90 @@ def delete_provider(request):
 	return HttpResponse(json.dumps(result))
 	
 
+def display_storage(request):
+	'''显示仓库列表'''
+	s_list = dict()
+
+	for s in Storage.objects.all():
+		s_list[s.id] = dict()
+		s_list[s.id]['name'] = s.name
+		s_list[s.id]['city'] = s.city
+		s_list[s.id]['adminer'] = s.adminer
+		s_list[s.id]['default'] = s.default	
+		
+	return HttpResponse(json.dumps(s_list))
+
+def add_storage(request):
+	'''添加仓库'''
+	s_name = request.POST.get('name')
+	s_city = request.POST.get('city')
+	s_adminer = request.POST.get('adminer')
+	s_default = request.POST.get('default')
+	
+	result = dict()
+	
+	try:
+		s_obj = Storage(
+			name = s_name,
+			city = s_city,
+			adminer = s_adminer,
+			default = s_default
+		)
+		s_obj.save()
+		result['status'] = 1
+		result['info'] = 'Successfully'
+	except BaseException, e: 
+		print 'Appear error when add storage: ', e
+		result['status'] = 0
+		result['info'] = 'Failto add storage'
+	
+	return HttpResponse(json.dumps(result))
+
+def update_storage(request):
+	'''修改仓库'''
+	s_id = request.POST.get('id')
+	s_name = request.POST.get('name')
+	s_city = request.POST.get('city')
+	s_adminer = request.POST.get('adminer')
+	s_default = request.POST.get('default')
+	
+	result = dict()
+	#print s_id
+	try:
+		s_obj = Storage.objects.get(id = s_id)
+		s_obj.name = s_name
+		s_obj.city = s_city
+		s_obj.adminer = s_adminer
+		s_obj.default = s_default
+		s_obj.save()
+		
+		result['status'] = 1
+		result['info'] = 'Successfully'
+	except BaseException, e:
+		print 'Appear error when update storage: ', e
+		result['status'] = 0
+		result['info'] = 'Failto update storage'
+	
+	return HttpResponse(json.dumps(result))
+	
+def delete_storage(request):
+	'''删除仓库'''
+	s_id = request.POST.get('id')
+	result = dict()
+	
+	try:
+		s_obj = Storage.objects.get(id = s_id)
+		s_obj.delete()
+		result['status'] = 1
+		result['info'] = 'Successfully'
+	except BaseException, e:
+		print 'Appear error when delete storage: ', e
+		result['status'] = 0
+		result['info'] = 'Fail to delete the storage'
+		
+	return HttpResponse(json.dumps(result))	
+
+	
 def display_department(request):
 	'''显示部门列表'''
 	d_list = dict()

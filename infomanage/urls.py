@@ -11,6 +11,12 @@ urlpatterns = [
     url(r'update_provider/$', views.update_provider),
     url(r'delete_provider/$', views.delete_provider),
 
+	url(r'display_storage/$', views.display_storage),
+	url(r'add_storage/$', views.add_storage),
+	url(r'update_storage/$', views.update_storage),                                                                       
+	url(r'delete_storage/$', views.delete_storage),
+
+	
     url(r'display_department/$', views.display_department),
     url(r'add_department/$', views.add_department),
     url(r'update_department/$', views.update_department),

@@ -1,8 +1,6 @@
 /**
  * Created by Ran Li on 1/10/2016
  */
-
-
  
  /**
   * 用模态框的方式弹出通知，可以弹出正确信息或错误通知
@@ -328,7 +326,7 @@ function display_top_category (tabID){
 	var table_topCategory = $('<table class="data display create_sub_window" cellspacing="0"' 
 				+ ' width="100%" id="tbl_product_topCategory"></table>').appendTo($('#' + tabID));
 	var thead_topCategory = $(
-			'<thead><tr>' + '<th class="shrink">&nbsp;</th>'
+			'<thead><tr>'
 					+ '<th class="hidden">ID</th>'
 					+ '<th>序号</th>'
 					+ '<th>分类名称</th>'
@@ -344,8 +342,7 @@ function display_top_category (tabID){
 			//console.log(json_data);
 			var i = 0;
 			$.each(json_data, function (index, item) {				
-				var html_topCategory = '<tr>' +
-					'<td><img src="/static/erp/img/icons/' + 'icon_16_computer.png' + '"></img></td>' +		
+				var html_topCategory = '<tr>' +	
 					'<td class="hidden">' + item.id + '</td>' +
 					'<td>' + ++i + '</td>' +
 					'<td>' + item.category + '</td>' +
@@ -395,7 +392,7 @@ function display_sub_category (tabID){
 					+ ' width="100%" id="tbl_product_subCategory_' + top_category_id + '"></table>')
 					.appendTo($('#' + tabID));
 	var thead_subCategory = $(
-			'<thead><tr>' + '<th class="shrink">&nbsp;</th>'
+			'<thead><tr>'
 					+ '<th class="hidden">ID</th>'
 					+ '<th>序号</th>'
 					+ '<th>产品名称</th>'					
@@ -412,8 +409,7 @@ function display_sub_category (tabID){
 			//console.log(json_data);
 			var i = 0;			
 			$.each(json_data, function (index, item) {				
-				var html_subCategory = '<tr>' +
-					'<td><img src="/static/erp/img/icons/' + 'icon_16_computer.png' + '"></img></td>' +		
+				var html_subCategory = '<tr>' +		
 					'<td class="hidden">' + item.id + '</td>' +
 					'<td>' + ++i + '</td>' +
 					'<td>' + item.category + '</td>' +
@@ -460,6 +456,8 @@ function button_click(element) {
 		provider_action(element, 'add');
 	}else if(element.hasClass('add_staff')){
 		staff_action(element, 'add');
+	}else if(element.hasClass('add_storage')){
+		storage_action(element, 'add');
 	}else if(element.hasClass('add_department')){
 		department_action(element, 'add');
 	}else if(element.hasClass('add_duty')){
@@ -476,9 +474,9 @@ function button_click(element) {
  */
 function product_category_action(element, action, category_type){
 	if(category_type == 'top_category'){
-		var category_name = element.closest('tr').children().eq(3).html() || '';
-		var category_desc = element.closest('tr').children().eq(4).html() || '';
-		var category_id = element.closest('tr').children().eq(1).html();		
+		var category_name = element.closest('tr').children().eq(2).html() || '';
+		var category_desc = element.closest('tr').children().eq(3).html() || '';
+		var category_id = element.closest('tr').children().eq(0).html();		
 		
 		if(action == 'add'){
 			var form_html = '<form method="post" class="contact_form" id="form_add_top_category" style="width:400px">' +
@@ -727,10 +725,10 @@ function product_category_action(element, action, category_type){
 			});
 		}//end of add sub_category
 		else if(action == 'update'){
-			var category_name = element.closest('tr').children().eq(3).html();
-			var category_unit = element.closest('tr').children().eq(4).html();
-			var category_desc = element.closest('tr').children().eq(5).html();
-			var category_id = element.closest('tr').children().eq(1).html();
+			var category_name = element.closest('tr').children().eq(2).html();
+			var category_unit = element.closest('tr').children().eq(3).html();
+			var category_desc = element.closest('tr').children().eq(4).html();
+			var category_id = element.closest('tr').children().eq(0).html();
 			var top_category_id = element.closest('div.window').attr('id').substring('window_product_topCategory_'.length);
 			var form_html = '<form method="post" class="contact_form" id="form_add_sub_category" style="width:400px">' +
 				'<ul><li><h2>您正在修改“<strong style="color:red">' + category_name + '</strong>”分类</h2>' +
@@ -798,8 +796,8 @@ function product_category_action(element, action, category_type){
 			});
 		}//end of update sub_category
 		else if(action == 'delete'){			
-			var category_id = element.closest('tr').children().eq(1).html();
-			var category_name = element.closest('tr').children().eq(3).html();
+			var category_id = element.closest('tr').children().eq(0).html();
+			var category_name = element.closest('tr').children().eq(2).html();
 			var top_category_id = element.closest('div.window').attr('id').substring('window_product_topCategory_'.length);
 			var dlg_form = $(document.createElement('div')).appendTo($('#desktop'));
 			dlg_form.addClass('dialog').attr('id', 'dlg_delete_sub_category').attr('title', '删除分类');
@@ -863,8 +861,8 @@ function createSubWindow(element){
 			|| element.closest('div.tab').attr('id');
 	//alert(window_id);
 	if(window_id == 'tbl_product_topCategory'){
-		var top_category_id = element.closest('tr').children().eq(1).html(),
-			top_category_name = element.closest('tr').children().eq(3).html(),
+		var top_category_id = element.closest('tr').children().eq(0).html(),
+			top_category_name = element.closest('tr').children().eq(2).html(),
 			picture = 'icon_16_computer.png',
 			bottom = '提示：当前打开的顶级分类为“' + top_category_name + '”，您可以查看或为其添加子分类。';
 		
@@ -1623,10 +1621,295 @@ function display_staff(tabID){
  }
  
 
- /**
-  * 显示部门子页面的内容
-  * @param tabID	部门子页面所属的tab的ID
-  */
+/**
+* 显示仓库子页面的内容
+* @param tabID	仓库子页面所属的tab的ID
+*/
+function display_storage(tabID){
+	if($('#tbl_' + tabID)){//如果当前table已经有内容，先将其删除
+		$('#tbl_' + tabID + '_wrapper').remove();//将jquery DataTable包裹table的div删除
+	}
+	var table_storage = $('<table class="data display" cellspacing="0" width="100%" id="tbl_' + tabID + '"></table>')
+				.appendTo($("#" + tabID));
+	var thead_storage = $('<thead><tr>' 
+					+ '<th class="hidden">ID</th>'
+					+ '<th>序号</th>'
+					+ '<th>仓库名称</th>'
+					+ '<th>城市</th>'
+					+ '<th>负责人</th>'
+					+ '<th>是否默认仓库</th>'
+					+ '<th>操作</th>'
+					+ '</tr></thead>').appendTo(table_storage);
+	var tbody_storage = $('<tbody></tbody>').appendTo(table_storage);
+	run_waitMe($('#'+tabID), '请稍后...', 'win8_linear');
+	
+	$.getJSON('/infomanage/display_storage/', function(json_data){
+		if(json_data){
+			var i = 0;
+			$.each(json_data, function(index, item){
+				storage_default = item.default==1? '是' : '否';
+				var html_storage = '<tr>'
+						+ '<td class="hidden">' + index +'</td>'
+						+ '<td>' + ++i + '</td>'
+						+ '<td>' + item.name + '</td>'
+						+ '<td >' + item.city + '</td>'
+						+ '<td>' + item.adminer + '</td>'
+						+ '<td>' + storage_default + '</td>'
+						+ '<td class="dropdown"><a class="btn btn-default storage-menu actionMenu"'
+						+ ' data-toggle="dropdown" href="#">更多 <i class="fa fa-sort-down"></i></a></td>'
+						+ '</tr>'
+				$(html_storage).appendTo(tbody_storage);
+			});
+		}
+	});
+	
+	setTimeout(function(){
+		$('#'+tabID).closest('.window_main').waitMe('hide');
+	}, 300);
+	
+	setTimeout(function(){
+		//使用Jquery DataTable插件		
+		$('#tbl_' + tabID).DataTable();
+		
+		var contextMenu = $(document.createElement('ul')).appendTo(tbody_storage);
+		contextMenu.addClass('dropdown-menu').attr('role', 'menu').attr('id', 'storage-menu')
+			.css('top', '80%').css('font-size', '12px').css('left', '0px').css('left', 'auto').css('min-width', '100px');
+		$('<li><a tabindex="-1" href="#" class="storage-edit">修改</a></li>').appendTo(contextMenu);
+		$('<li role="separator" class="divider"></li>').appendTo(contextMenu);
+		$('<li><a tabindex="-1" href="#" class="storage-delete" style="color:red">删除</a></li>').appendTo(contextMenu);
+	}, 100);
+	
+	$('#tbl_' + tabID).closest('div.window').find('div.window_bottom')
+			.html('提示：您可以在此添加或删除仓库。');
+}
+
+/**
+ * 响应仓库管理页面的action-menu
+ *
+ *
+ */
+ function storage_action(element, action){ 
+	 if($('div.dialog')){
+		 $('div.dialog').remove();
+	 }
+	 if(action == 'add'){		 
+		 var form_html = '<form method="post", class="contact_form" style="width:500px">'
+				+ '<ul><li><h2>您正在添加新的仓库</h2><span class="required_notification">* 不能为空</span></li>'
+				+ '<li><label for="storage_name">*仓库名称</label>'
+				+ '<input type="text" name="storage_name" id="storage_name" value="" required="true"></li>'
+				+ '<li><label for="storage_city">*所在城市</label>'
+				+ '<input type="text" name="storage_city" id="storage_city" value="" required="true"></li>'
+				+ '<li><label for="storage_adminer">*负责人</label>'
+				+ '<input type="text" name="storage_adminer" id="storage_adminer" value="" required="true"></li>'
+				+ '<li><label for="storage_default">是否默认仓库</label><select id="storage_default">'
+				+ '<option>请选择是否为默认仓库</option>'
+				+ '<option value="1">是</option><option value="0">否</option>'
+				+ '</select>只能有一个默认仓库</li>'
+				+ '</ul></form>';
+		
+		var dlg_form = $('<div></div>').appendTo($('#desktop'));
+		dlg_form.addClass('dialog').attr('id', 'dlg_add_storage').attr('title', '添加新仓库');
+		
+		$(form_html).appendTo(dlg_form);
+		$('#dlg_add_storage').dialog({
+			modal: true,
+			width: 650,
+			buttons: {
+				"取消": function(){
+					$(this).dialog('close');
+				},
+				"确定": function(){
+					var storage_name = dlg_form.find('#storage_name').val(),
+						storage_city = dlg_form.find('#storage_city').val(),
+						storage_adminer = dlg_form.find('#storage_adminer').val(),
+						storage_default = $('#storage_default option:selected').attr('value');
+					if(!storage_name.trim()){
+						alert("仓库名称不能为空！");
+						return false;
+					}
+					//alert(storage_name+' '+storage_phone);
+					//return false;
+					$(this).dialog('close');
+					
+					run_waitMe(element, '请稍后...', 'win8_linear');
+					
+					$.ajax({
+						type : 'POST',
+						url : '/infomanage/add_storage/',
+						data : {
+							'name': storage_name,
+							'city': storage_city,
+							'adminer': storage_adminer,
+							'default': storage_default,
+						},
+						beforeSend: function(xhr, settings){  
+							var csrftoken = $.cookie('csrftoken');  
+							xhr.setRequestHeader("X-CSRFToken", csrftoken);  
+						},
+						success: function(data){
+							console.log(data);
+							display_storage("info_storage");
+							element.closest('.window_main').waitMe('hide');
+						},
+						error: function(xhrm, data){
+							element.closest('.window_main').waitMe('hide');
+							alert('添加仓库失败');
+						}
+					});
+					
+					setTimeout(function(){
+						element.closest('.window_main').waitMe('hide');
+					}, 1000);
+				}
+			}
+		});
+	 }else if(action == 'update'){
+		 var obj = element.closest('tr').children();
+		 var storage_id = obj.eq(0).html(),
+			 storage_name = obj.eq(2).html(),
+			 storage_city = obj.eq(3).html(),
+			 storage_adminer = obj.eq(4).html(),
+			 storage_default = obj.eq(5).html();
+			 
+		 var form_html = '<form method="post", class="contact_form" style="width:500px">'
+				+ '<ul><li><h2>您正在修改仓库：<strong style="color">' + storage_name + '</strong></h2><span class="required_notification">* 不能为空</span></li>'
+				+ '<li><label for="storage_name">*仓库名称</label>'
+				+ '<input type="text" name="storage_name" id="storage_name" value="' + storage_name + '" required="true"></li>'
+				+ '<li><label for="storage_city">*所在城市</label>'
+				+ '<input type="text" name="storage_city" id="storage_city" value="' + storage_city + '" required="true"></li>'
+				+ '<li><label for="storage_adminer">*负责人</label>'
+				+ '<input type="text" name="storage_adminer" id="storage_adminer" value="' + storage_adminer + '" required="true"></li>'
+				+ '<li><label for="storage_default">是否默认仓库</label><select id="storage_default">'
+				+ '<option>请选择是否为默认仓库</option>'
+				//+ '<option value="1">是</option><option value="0">否</option>'
+				+ '</select>只能有一个默认仓库</li>'
+				+ '</ul></form>';
+		
+		var dlg_form = $('<div></div>').appendTo($('#desktop'));
+		dlg_form.addClass('dialog').attr('id', 'dlg_update_storage').attr('title', '修改仓库');
+		
+		$(form_html).appendTo(dlg_form);
+		if(storage_default == '是'){
+			$('<option value="1" selected>是</option><option value="0">否</option>').appendTo('#storage_default');
+		}else{
+			$('<option value="1">是</option><option value="0" selected>否</option>').appendTo('#storage_default');
+		}
+		
+		$('#dlg_update_storage').dialog({
+			modal: true,
+			width: 650,
+			buttons: {
+				"取消": function(){
+					$(this).dialog('close');
+				},
+				"确定": function(){
+					var name = dlg_form.find('#storage_name').val(),
+						city = dlg_form.find('#storage_city').val(),
+						adminer = dlg_form.find('#storage_adminer').val(),
+						storage_default = $('#storage_default option:selected').attr('value');
+					if(!storage_name.trim()){
+						alert("仓库名称不能为空！");
+						return false;
+					}
+					//alert(name+' '+leader); //return false;
+					
+					$(this).dialog('close');
+					
+					run_waitMe(element, '请稍后...', 'win8_linear');
+					
+					$.ajax({
+						type : 'POST',
+						url : '/infomanage/update_storage/',
+						data : {
+							'id': storage_id,
+							'name': name,
+							'city': city,
+							'adminer': adminer,
+							'default': storage_default,
+						},
+						beforeSend: function(xhr, settings){  
+							var csrftoken = $.cookie('csrftoken');  
+							xhr.setRequestHeader("X-CSRFToken", csrftoken);  
+						},
+						success: function(data){
+							console.log(data);
+							display_storage("info_storage");
+							element.closest('.window_main').waitMe('hide');
+						},
+						error: function(xhrm, data){
+							element.closest('.window_main').waitMe('hide');
+							alert('修改仓库失败');
+						}
+					});
+					
+					setTimeout(function(){
+						element.closest('.window_main').waitMe('hide');
+					}, 1000);
+				}
+			}
+		});
+	 }else if(action == 'delete'){
+		 var obj = element.closest('tr').children();
+		 var storage_id = obj.eq(0).html(),
+			 storage_name = obj.eq(2).html();
+			 storage_default = obj.eq(5).html();
+		var dlg_form = $(document.createElement('div')).appendTo($('#desktop'));
+		dlg_form.addClass('dialog').attr('id', 'dlg_delete_storage').attr('title', '删除仓库');
+		var form_html = '<span>请问您确定要删除仓库“<strong style="color:red">' + storage_name + '</strong>”？</span>';
+		$(form_html).appendTo(dlg_form);
+		$('#dlg_delete_storage').dialog({
+			modal: true,
+			width: 400,
+			buttons: {
+				"取消": function () {
+					$(this).dialog('close');
+				},
+				"确定": function () {                	
+					 $(this).dialog('close');
+					 if(storage_default == '是'){
+						 alert('该仓库为默认仓库，如需删除请先取消其默认仓库。')
+						 return false;
+					 }
+					 run_waitMe(element, '请稍后...', 'win8_linear');
+					 //delete
+					$.ajax({
+						type : 'POST',
+						url : '/infomanage/delete_storage/',
+						data : {
+							"id": storage_id,
+						},
+						dataType : 'json',
+						beforeSend: function(xhr, settings){  
+							var csrftoken = $.cookie('csrftoken');  
+							xhr.setRequestHeader("X-CSRFToken", csrftoken);  
+						 },  
+						success : function(data) {
+							display_storage('info_storage');
+							element.closest('.window_main').waitMe('hide');
+						},
+						error : function(xhr, state) {
+							element.closest('.window_main').waitMe('hide');
+							alert('Ajax delete error! Please try again!')
+						}
+					});
+					setTimeout(function(){
+						element.closest('.window_main').waitMe('hide');
+					}, 200);                    
+				},
+				
+			},
+			close: function (event, ui) {
+				$(this).remove();
+			}
+		});
+	 }
+ }
+ 
+ 
+/**
+* 显示部门子页面的内容
+* @param tabID	部门子页面所属的tab的ID
+*/
 function display_department(tabID){
 	if($('#tbl_' + tabID)){//如果当前table已经有内容，先将其删除
 		$('#tbl_' + tabID + '_wrapper').remove();//将jquery DataTable包裹table的div删除
